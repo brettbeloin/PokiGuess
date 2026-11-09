@@ -1,0 +1,52 @@
+# Runs both programs at once:  docker compose up --build
+# Then open the UI at http://localhost:8081 (it calls the API at http://localhost:8080).
+services:
+  api:
+    container_name: PokiGuess
+    environment:
+      - TZ=America/Denver   # show times in Mountain time, not UTC
+      - DB_HOST=mysql        # the service name below IS the hostname inside Docker
+      - MONGO_HOST=mongo
+    ports:
+      - "8080:8080"
+    depends_on:              # don't start the API until both databases answer
+      mysql:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+  
+  mysql:
+    image: mysql:8.4                     # a ready-made image: nothing to build
+    container_name: user-mysql
+    environment:
+      - TZ=America/Denver
+      - MYSQL_ROOT_PASSWORD=rootpass     # needed the first time the database is created
+      - MYSQL_DATABASE=PokeGuess           # creates an empty database named "witcher"
+      - MYSQL_USER=user               # and a user the API logs in as
+      - MYSQL_PASSWORD=pokiepass
+    ports:
+      - "3306:3306"                      # optional: lets tools on your PC connect
+    volumes:
+      - mysql-data:/var/lib/mysql        # where MySQL keeps its files → saved outside the container
+    healthcheck:                         # "healthy" = MySQL accepts connections
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 5s
+      retries: 20
+
+  mongo:
+    image: mongo:8.0
+    container_name: pokemon-mongo
+    environment:
+      - TZ=America/Denver
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      retries: 20
+
+volumes:              # named volumes: Docker stores them, and they survive "down" and rebuilds
+  mysql-user-data:
+  mongo-pokemon-data:
