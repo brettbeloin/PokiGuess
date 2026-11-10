@@ -13,13 +13,13 @@ public class UserSeeder implements CommandLineRunner {
     //     this.monster = monster;
     // }
     //
-    // @Override
-    // public void run(String... args) {
-    //     if (monster.count() == 0) {
-    //         for (MonsterData record :
-    //                 List.of(new MonsterData("Ghoul", 1), new MonsterData("Wraith", 3), new MonsterData("Wyvern", 8))) {
-    //             monster.save(new Monster(record.danger(), record.name()));
-    //         }
-    //     }
-    // }
+    @Override
+    public void run(String... args) {
+        // if (monster.count() == 0) {
+        //     for (MonsterData record :
+        //             List.of(new MonsterData("Ghoul", 1), new MonsterData("Wraith", 3), new MonsterData("Wyvern", 8))) {
+        //         monster.save(new Monster(record.danger(), record.name()));
+        //     }
+        // }
+    }
 }

@@ -1,4 +1,4 @@
-package edu.neumont.csc280.witcher.config;
+package edu.neumont.pro150.pokemon.pokiguess.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

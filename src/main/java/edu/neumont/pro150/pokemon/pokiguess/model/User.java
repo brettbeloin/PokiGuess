@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 /**
  * User
  */
-@Entiy
+// @Entity
 public class User {
 
     
