@@ -2,7 +2,7 @@
 
 ---
 
-![UI breakdown](./assets/PokiGuess.png)
+![UI breakdown](assets/PokiGuess.png)
 
 ## What is it
 PokiGuess is a Guess Who game where you are given a Pokémon's silhouette or cry and have to guess its name.
