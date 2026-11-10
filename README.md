@@ -37,9 +37,9 @@ docker compose up --build --force-recreate -d
 ## Requirements
 
 ### Week One: Skeleton
-- [ ] Set up project
-  - [ ] File structure
-  - [ ] Add to GitHub
+- [x] Set up project
+  - [x] File structure
+  - [x] Add to GitHub
 - [ ] Set basic UI elements for the four pages:
   - [ ] Sign-in page 
   - [ ] Start page
