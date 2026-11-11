@@ -1,11 +1,10 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>PokiGuess</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Htmx Demo</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -13,19 +12,15 @@
     <script src="https://unpkg.com/htmx.org@2.0.1"></script>
   </head>
   <body>
-    <header th:replace="~{fragments/header :: header}"></header>
+    <header
+      th:replace="~{fragments/header :: header}"
+      th:text="${heading}"
+    ></header>
     <main class="container">
       <section>
         <h1>Htmx Demo</h1>
         <div id="parent-div"></div>
-        <button
-          hx-post="/clicked"
-          hx-trigger="click"
-          hx-target="#parent-div"
-          hx-swap="outerHTML"
-        >
-          Click Me!
-        </button>
+        <a th:href="@{/game}" hx:post="/game">Start Game</a>
       </section>
     </main>
     <footer th:replace="~{fragments/footer :: footer}"></footer>

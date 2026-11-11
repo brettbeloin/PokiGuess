@@ -1,6 +1,5 @@
 package edu.neumont.pro150.pokemon.pokiguess.controllor;
 
-import java.time.LocalDateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("projName", "PokiGuess");
+        model.addAttribute("heading", "Home");
         return "index";
     }
 
-    @PostMapping("/clicked")
+    @PostMapping("/game")
     public String clicked(Model model) {
-        model.addAttribute("now", LocalDateTime.now().toString());
-        return "clicked :: result";
+        return "game";
     }
 }
